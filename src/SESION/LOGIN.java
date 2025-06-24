@@ -122,7 +122,7 @@ public class LOGIN extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+         //Aqui ira el inicio a sesion o a registro depende del formulario
     }//GEN-LAST:event_jButton1ActionPerformed
 
    
