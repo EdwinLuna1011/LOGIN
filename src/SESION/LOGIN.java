@@ -18,9 +18,11 @@ public class LOGIN extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -28,7 +30,7 @@ public class LOGIN extends javax.swing.JInternalFrame {
         logo2 = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -58,6 +60,20 @@ public class LOGIN extends javax.swing.JInternalFrame {
 
         jPanel4.setBackground(new java.awt.Color(153, 153, 153));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton1.setText("Iniciar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, -1, -1));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/contra1.png"))); // NOI18N
+        jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 60, 60));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/User2222.png"))); // NOI18N
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 60, 60));
         jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, -1, -1));
 
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -66,7 +82,6 @@ public class LOGIN extends javax.swing.JInternalFrame {
             }
         });
         jPanel4.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 256, 34));
-        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 53, 57));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Variable", 2, 14)); // NOI18N
         jLabel6.setText("Nombre de usuario");
@@ -78,24 +93,20 @@ public class LOGIN extends javax.swing.JInternalFrame {
         jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 2, 24)); // NOI18N
-        jLabel2.setText("Bienbenidos al Sad");
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 280, -1));
+        jLabel2.setText("Bienvenido al Sad");
+        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 220, -1));
         jPanel4.add(logo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, -1, 50));
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/ciudad.png"))); // NOI18N
         logo.setText("jLabel1");
         jPanel4.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 0, 220, 400));
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/fondo.empresa11.png"))); // NOI18N
         jLabel3.setText("jLabel3");
-        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 50, 60));
+        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 400));
 
-        jButton1.setText("Iniciar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, -1, -1));
+        jLabel5.setText("jLabel5");
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 50, 60));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,7 +118,7 @@ public class LOGIN extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 9, Short.MAX_VALUE))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         pack();
@@ -131,8 +142,10 @@ public class LOGIN extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
