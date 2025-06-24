@@ -67,13 +67,13 @@ public class LOGIN extends javax.swing.JInternalFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, -1, -1));
+        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 350, -1, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/contra1.png"))); // NOI18N
-        jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 60, 60));
+        jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 60, 60));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/User2222.png"))); // NOI18N
-        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 60, 60));
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 60, 60));
         jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, -1, -1));
 
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -81,20 +81,20 @@ public class LOGIN extends javax.swing.JInternalFrame {
                 jTextField2ActionPerformed(evt);
             }
         });
-        jPanel4.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 256, 34));
+        jPanel4.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 256, 34));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Variable", 2, 14)); // NOI18N
         jLabel6.setText("Nombre de usuario");
-        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, -1, -1));
-        jPanel4.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 280, 260, 32));
+        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, -1, -1));
+        jPanel4.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 260, 32));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Variable", 2, 14)); // NOI18N
         jLabel4.setText("Contraseña");
-        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, -1, -1));
+        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 2, 24)); // NOI18N
         jLabel2.setText("Bienvenido al Sad");
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 220, -1));
+        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, 220, -1));
         jPanel4.add(logo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, -1, 50));
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/ciudad.png"))); // NOI18N
