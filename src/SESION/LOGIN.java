@@ -66,8 +66,6 @@ public class LOGIN extends javax.swing.JInternalFrame {
             }
         });
         jPanel4.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 256, 34));
-
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\21241\\Downloads\\User2222.png")); // NOI18N
         jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 53, 57));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Variable", 2, 14)); // NOI18N
@@ -84,11 +82,10 @@ public class LOGIN extends javax.swing.JInternalFrame {
         jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 280, -1));
         jPanel4.add(logo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, -1, 50));
 
-        logo.setIcon(new javax.swing.ImageIcon("C:\\Users\\21241\\Downloads\\ciudad.png")); // NOI18N
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/ciudad.png"))); // NOI18N
         logo.setText("jLabel1");
         jPanel4.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 0, 220, 400));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\21241\\Downloads\\icono_contraseña.png")); // NOI18N
         jLabel3.setText("jLabel3");
         jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 50, 60));
 
