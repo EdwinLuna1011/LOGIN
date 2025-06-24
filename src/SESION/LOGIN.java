@@ -110,7 +110,8 @@ public class LOGIN extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
+       //Aqui ira el ingreso
+       
     }//GEN-LAST:event_jTextField2ActionPerformed
 
    
