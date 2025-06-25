@@ -140,12 +140,13 @@ if ("".equals(jTextField2.getText())||"".equals(jTextField3.getText())){
 }
 else{
     JOptionPane.showMessageDialog(null, "Guardado");
-}
-        
-        InicioCliente j= new InicioCliente();
+     InicioCliente j= new InicioCliente();
         aseguradora.escriAsegu.add(j);
         j.setVisible(true);
 this.dispose();
+}
+        
+       
         
 //Aqui ira el inicio a sesion o a registro depende del formulario
     }//GEN-LAST:event_jButton1ActionPerformed
