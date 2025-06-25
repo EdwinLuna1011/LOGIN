@@ -10,7 +10,6 @@ public class InicioCliente extends javax.swing.JInternalFrame {
     public InicioCliente() {
         initComponents();
         InitStyles();
-       jPanel4.setVisible(false);
         
        
        
@@ -179,7 +178,7 @@ pantalla1.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-jPanel4.setVisible(true);
+
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
