@@ -1,6 +1,10 @@
 
 package SESION;
 
+import javax.swing.JOptionPane;
+import login.InicioCliente;
+import regis.aseguradora;
+
 
 public class LOGIN extends javax.swing.JInternalFrame {
 
@@ -131,7 +135,19 @@ public class LOGIN extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         //Aqui ira el inicio a sesion o a registro depende del formulario
+if ("".equals(jTextField2.getText())||"".equals(jTextField3.getText())){
+    JOptionPane.showMessageDialog(null, "No se aceptan campos vacios");
+}
+else{
+    JOptionPane.showMessageDialog(null, "Guardado");
+}
+        
+        InicioCliente j= new InicioCliente();
+        aseguradora.escriAsegu.add(j);
+        j.setVisible(true);
+this.dispose();
+        
+//Aqui ira el inicio a sesion o a registro depende del formulario
     }//GEN-LAST:event_jButton1ActionPerformed
 
    
