@@ -4,50 +4,67 @@
  */
 package login;
 
+import Clases.Registro;
 import Clases.Usuario;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.event.*;
+
 
 /**
  *
  * @author enriq
  */
 public class InicioAgente extends javax.swing.JInternalFrame {
+private JTable tablaUsuarios;
+private DefaultTableModel modeloTabla;
 
-      public static Usuario usr;
-    public static ArrayList<Usuario> Datos = new ArrayList<Usuario>();
     /**
      * Creates new form Registro
      */
-    public void GuardarDatos(){
-    
-    String Name = nombre.getText();
-    String Email = correo.getText();
-    String User = usuario.getText();
-    String Password = contraseña.getText();
-    String Confirm_Pass = cofim_contr.getText();
-    String num = numero.getText();
-    String Dom = dominio.getSelectedItem().toString();
 
-
-    Usuario usr = new Usuario(Name, Email, User, Password, Confirm_Pass, Dom, num);
-
-
-    Datos.add(usr);
-
-    JOptionPane.showMessageDialog(null, "Datos guardados con éxito!!!!");
-    System.out.println("Los Datos guardados son: " + Name + ", " + Email + ", @" + Dom + ", "
-            + User + ", " + Password + ", " + Confirm_Pass);
-    System.out.println("Total usuarios registrados: " + Datos.size());
-    
-        
-}  
-    public static void Validar(){
-        
-    }
        
     public InicioAgente() {
         initComponents();
+        
+
+modeloTabla = new DefaultTableModel();
+tablaUsuarios = new JTable(modeloTabla);
+modeloTabla.setColumnIdentifiers(new Object[]{"Nombre", "Correo", "Usuario", "Contraseña", "Dominio", "Número"});
+tablaUsuarios.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+
+JScrollPane scrollPane = new JScrollPane(tablaUsuarios);
+scrollPane.setBounds(20, 300, 600, 150); 
+this.add(scrollPane);
+
+
+tablaUsuarios.addMouseListener(new MouseAdapter() {
+    public void mouseClicked(MouseEvent evt) {
+        int fila = tablaUsuarios.getSelectedRow();
+        if (fila >= 0) {
+            nombre.setText(modeloTabla.getValueAt(fila, 0).toString());
+            correo.setText(modeloTabla.getValueAt(fila, 1).toString());
+            usuario.setText(modeloTabla.getValueAt(fila, 2).toString());
+            contraseña.setText(modeloTabla.getValueAt(fila, 3).toString());
+            cofim_contr.setText(modeloTabla.getValueAt(fila, 3).toString());
+            dominio.setSelectedItem(modeloTabla.getValueAt(fila, 4).toString());
+            numero.setText(modeloTabla.getValueAt(fila, 5).toString());
+        }
+    }
+});
+
+ this.setSize(900, 600);
+
+
+        AgregarUsuario.addActionListener(e -> agregarUsuario());
+        Modificar.addActionListener(e -> modificar());
+        Eliminar.addActionListener(e -> eliminarUsuario());
+        VerTabla.addActionListener(e -> cargarTabla());
+
+
+        cargarTabla();
     }
 
     /**
@@ -66,7 +83,10 @@ public class InicioAgente extends javax.swing.JInternalFrame {
         usuario = new javax.swing.JTextField();
         numero = new javax.swing.JTextField();
         dominio = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        AgregarUsuario = new javax.swing.JButton();
+        Modificar = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
+        VerTabla = new javax.swing.JButton();
 
         nombre.setText("jTextField1");
 
@@ -88,10 +108,31 @@ public class InicioAgente extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        AgregarUsuario.setText("Agregar");
+        AgregarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                AgregarUsuarioActionPerformed(evt);
+            }
+        });
+
+        Modificar.setText("Modificar");
+        Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarActionPerformed(evt);
+            }
+        });
+
+        Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
+
+        VerTabla.setText("Ver Tabla");
+        VerTabla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VerTablaActionPerformed(evt);
             }
         });
 
@@ -101,21 +142,26 @@ public class InicioAgente extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(135, 135, 135)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cofim_contr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                        .addComponent(dominio, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cofim_contr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(dominio, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(AgregarUsuario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Modificar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Eliminar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(VerTabla)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,15 +178,15 @@ public class InicioAgente extends javax.swing.JInternalFrame {
                 .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cofim_contr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(28, 28, 28))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AgregarUsuario)
+                    .addComponent(Modificar)
+                    .addComponent(Eliminar)
+                    .addComponent(VerTabla))
+                .addGap(28, 28, 28))
         );
 
         pack();
@@ -150,28 +196,121 @@ public class InicioAgente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_dominioActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-          if(nombre.getText().isEmpty() || correo.getText().isEmpty() || usuario.getText().isEmpty()
-            ||numero.getText().isEmpty() || contraseña.getText().isEmpty() || cofim_contr.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Hay campos vacios...");
-        }else if(contraseña.getText().equals(cofim_contr.getText())){
-            GuardarDatos();
-            this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
-        }
+    private void AgregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarUsuarioActionPerformed
+    if (nombre.getText().isEmpty() || correo.getText().isEmpty() || usuario.getText().isEmpty()
+        || numero.getText().isEmpty() || contraseña.getText().isEmpty() || cofim_contr.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Hay campos vacíos...");
+        return;
+    }
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    if (!contraseña.getText().equals(cofim_contr.getText())) {
+        JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden");
+        return;
+    }
+
+    Usuario nuevo = new Usuario(
+        nombre.getText(),
+        correo.getText(),
+        usuario.getText(),
+        contraseña.getText(),
+        cofim_contr.getText(),
+        dominio.getSelectedItem().toString(),
+        numero.getText()
+    );
+
+    Registro.Datos.add(nuevo);
+    JOptionPane.showMessageDialog(this, "Usuario agregado");
+    cargarTabla();
+
+
+    }//GEN-LAST:event_AgregarUsuarioActionPerformed
+
+    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
+
+    String usuarioBuscar = usuario.getText();
+    for (Usuario u : Registro.Datos) {
+        if (u.getUsuario().equals(usuarioBuscar)) {
+            u.setNombre(nombre.getText());
+            u.setCorreo(correo.getText());
+            u.setContraseña(contraseña.getText());
+            u.setConfirmar(cofim_contr.getText());
+            u.setDominio(dominio.getSelectedItem().toString());
+            u.setNumero(numero.getText());
+
+            JOptionPane.showMessageDialog(this, "Usuario modificado");
+            cargarTabla();
+            return;
+        }
+    }
+    JOptionPane.showMessageDialog(this, "Usuario no encontrado");
+
+
+    }//GEN-LAST:event_ModificarActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+
+    String usuarioBuscar = usuario.getText();
+    for (int i = 0; i < Registro.Datos.size(); i++) {
+        if (Registro.Datos.get(i).getUsuario().equals(usuarioBuscar)) {
+            Registro.Datos.remove(i);
+            JOptionPane.showMessageDialog(this, "Usuario eliminado");
+            cargarTabla();
+            return;
+        }
+    }
+    JOptionPane.showMessageDialog(this, "Usuario no encontrado");
+
+
+    }//GEN-LAST:event_EliminarActionPerformed
+
+    private void VerTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerTablaActionPerformed
+
+    modeloTabla.setRowCount(0); // Limpia la tabla
+
+    for (Usuario u : Registro.Datos) {
+        modeloTabla.addRow(new Object[]{
+            u.getNombre(), u.getCorreo(), u.getUsuario(),
+            u.getContraseña(), u.getDominio(), u.getNumero()
+        });
+    }
+
+    }//GEN-LAST:event_VerTablaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AgregarUsuario;
+    private javax.swing.JButton Eliminar;
+    private javax.swing.JButton Modificar;
+    private javax.swing.JButton VerTabla;
     private javax.swing.JTextField cofim_contr;
     private javax.swing.JTextField contraseña;
     private javax.swing.JTextField correo;
     public static javax.swing.JComboBox<String> dominio;
-    private javax.swing.JButton jButton1;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField numero;
     private javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarTabla() {
+        modeloTabla.setRowCount(0);
+        for (Usuario u : Registro.Datos) {
+            modeloTabla.addRow(new Object[]{
+                    u.getNombre(), u.getCorreo(), u.getUsuario(),
+                    u.getContraseña(), u.getDominio(), u.getNumero()
+            });
+        }
+    }
+
+    private void agregarUsuario() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private void modificar() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private void eliminarUsuario() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
 }

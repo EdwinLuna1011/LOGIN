@@ -8,9 +8,14 @@ package Clases;
  *
  * @author enriq
  */
+import java.util.ArrayList;
+import Clases.Usuario;
+
 public class Registro extends Persona {
     
-    String ID_empleado;
+    public static ArrayList<Usuario> Datos = new ArrayList<>(); // ✅ Arreglo de usuarios
+
+    private String ID_empleado;
 
     public Registro(String ID_empleado, String CURP, String RFC, String nombre, byte edad, byte genero, String nacionalidad) {
         super(CURP, RFC, nombre, edad, genero, nacionalidad);
@@ -24,21 +29,4 @@ public class Registro extends Persona {
     public void setID_empleado(String ID_empleado) {
         this.ID_empleado = ID_empleado;
     }
-
-    public static class Datos {
-
-        public static int size() {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-
-        public static Object get(int i) {
-            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        }
-
-        public Datos() {
-        }
-    }
-    
-    
-    
 }

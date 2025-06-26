@@ -9,9 +9,31 @@ import regis.aseguradora;
 
 public class LOGIN extends javax.swing.JInternalFrame {
 
-  
+  private final String AGENTE_USER = "agente";
+private final String AGENTE_PASS = "1234";
+
     public LOGIN() {
         initComponents();
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+    public void mouseClicked(java.awt.event.MouseEvent evt) {
+        String correo = JOptionPane.showInputDialog(null, "Ingresa tu correo para recuperar tu contraseña:");
+        boolean encontrado = false;
+
+        for (int i = 0; i < Registro.Datos.size(); i++) {
+            if (Registro.Datos.get(i).getCorreo().equalsIgnoreCase(correo)) {
+                JOptionPane.showMessageDialog(null, "Tu contraseña es: " + Registro.Datos.get(i).getContraseña());
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            JOptionPane.showMessageDialog(null, "Correo no encontrado.");
+        }
+    }
+});
+
     }
 
   
@@ -27,13 +49,13 @@ public class LOGIN extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        logUsr = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         logo2 = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        logPassword = new javax.swing.JPasswordField();
         jLabel7 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -81,12 +103,12 @@ public class LOGIN extends javax.swing.JInternalFrame {
         jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 60, 60));
         jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, -1, -1));
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        logUsr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                logUsrActionPerformed(evt);
             }
         });
-        jPanel4.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 256, 34));
+        jPanel4.add(logUsr, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 256, 34));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Variable", 2, 14)); // NOI18N
         jLabel6.setText("Nombre de usuario");
@@ -104,7 +126,7 @@ public class LOGIN extends javax.swing.JInternalFrame {
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/ciudad.png"))); // NOI18N
         logo.setText("jLabel1");
         jPanel4.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 0, 220, 400));
-        jPanel4.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 256, 34));
+        jPanel4.add(logPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 256, 34));
 
         jLabel7.setText("¿Restablecer tu contraseña?");
         jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 300, -1, -1));
@@ -123,43 +145,50 @@ public class LOGIN extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void logUsrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logUsrActionPerformed
        
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_logUsrActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-         boolean acceso = false;
+    String user = logUsr.getText();
+    String pass = new String(logPassword.getPassword());
 
-        for (int i = 0; i < Registro.Datos.size(); i++) {
-            if (logUsr.getText().equals(Registro.Datos.get(i).getUsuario()) &&
-                logPassword.getText().equals(Registro.Datos.get(i).getContraseña())) {
+    if (user.isEmpty() || pass.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "No se aceptan campos vacíos");
+        return;
+    }
 
-                JOptionPane.showMessageDialog(this, "Bienvenido!! " + Registro.Datos.get(i).getUsuario());
-                acceso = true;
-                break;
-            }
+    
+    if (user.equals(AGENTE_USER) && pass.equals(AGENTE_PASS)) {
+        JOptionPane.showMessageDialog(this, "Bienvenido Agente");
+        regis.agente agenteVentana = new regis.agente();
+        this.getParent().add(agenteVentana);
+        agenteVentana.setVisible(true);
+        this.dispose();
+        return;
+    }
+
+  
+    boolean encontrado = false;
+    for (int i = 0; i < Registro.Datos.size(); i++) {
+        if (user.equals(Registro.Datos.get(i).getUsuario()) &&
+            pass.equals(Registro.Datos.get(i).getContraseña())) {
+            JOptionPane.showMessageDialog(this, "Bienvenido!! " + Registro.Datos.get(i).getUsuario());
+            InicioCliente cliente = new InicioCliente();
+            aseguradora.escriAsegu.add(cliente);
+            cliente.setVisible(true);
+            this.dispose();
+            encontrado = true;
+            break;
         }
+    }
 
-        if (!acceso) {
-            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos, verifíquelos y vuelva a intentar");
-        }
+    if (!encontrado) {
+        JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.");
+    }
 
-        
-        if ("".equals(jTextField2.getText())||"".equals(jPasswordField1.getText())){
-    JOptionPane.showMessageDialog(null, "No se aceptan campos vacios");
-}
-else{
-    JOptionPane.showMessageDialog(null, "Guardado");
-     InicioCliente j= new InicioCliente();
-        aseguradora.escriAsegu.add(j);
-        j.setVisible(true);
-this.dispose();
-}
-        
-       
-        
-//Aqui ira el inicio a sesion o a registro depende del formulario
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
    
@@ -177,9 +206,9 @@ this.dispose();
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JPasswordField logPassword;
+    private javax.swing.JTextField logUsr;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel logo2;
     // End of variables declaration//GEN-END:variables

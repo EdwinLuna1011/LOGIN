@@ -95,8 +95,18 @@ public class Usuario {
         return "Usuario{" + "correo=" + correo + ", usuario=" + usuario + ", contraseña=="
                 + contraseña + "numero"+ numero+'}';
     }
-    
-    
-    
+
+  public void setConfirmar(String confirmarContraseña) {
+    this.confirmarContraseña = confirmarContraseña;
+}
+
+public void setNumero(String numero) {
+    this.numero = numero;
+}
+
+public String getNumero() {
+    return numero;
+}
+
     
 }
