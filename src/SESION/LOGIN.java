@@ -1,6 +1,7 @@
 
 package SESION;
 
+import Clases.Registro;
 import javax.swing.JOptionPane;
 import login.InicioCliente;
 import regis.aseguradora;
@@ -123,12 +124,29 @@ public class LOGIN extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-       //Aqui ira el ingreso
        
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-if ("".equals(jTextField2.getText())||"".equals(jPasswordField1.getText())){
+
+         boolean acceso = false;
+
+        for (int i = 0; i < Registro.Datos.size(); i++) {
+            if (logUsr.getText().equals(Registro.Datos.get(i).getUsuario()) &&
+                logPassword.getText().equals(Registro.Datos.get(i).getContraseña())) {
+
+                JOptionPane.showMessageDialog(this, "Bienvenido!! " + Registro.Datos.get(i).getUsuario());
+                acceso = true;
+                break;
+            }
+        }
+
+        if (!acceso) {
+            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos, verifíquelos y vuelva a intentar");
+        }
+
+        
+        if ("".equals(jTextField2.getText())||"".equals(jPasswordField1.getText())){
     JOptionPane.showMessageDialog(null, "No se aceptan campos vacios");
 }
 else{
@@ -165,4 +183,14 @@ this.dispose();
     private javax.swing.JLabel logo;
     private javax.swing.JLabel logo2;
     // End of variables declaration//GEN-END:variables
+
+    private static class logUsr {
+
+        private static Object getText() {
+            throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        }
+
+        public logUsr() {
+        }
+    }
 }
